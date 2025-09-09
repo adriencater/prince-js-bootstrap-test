@@ -10,18 +10,17 @@
 <body>
 	<script>
 
-// Read markdown file and convert to HTML using marked 0.3.19
-function readAndConvertMarkdown(filepath) {
-	console.log('Starting to load: ' + filepath);
+
+
+// Step 1: Load and convert markdown to HTML
+function loadAndConvertMarkdown(filepath) {
+	console.log('Step 1: Loading ' + filepath);
 	
 	var xhr = new XMLHttpRequest();
 	
 	try {
-		// Use synchronous request for PrinceXML
 		xhr.open('GET', filepath, false);
 		xhr.send(null);
-		
-		console.log('Status: ' + xhr.status);
 		
 		if (xhr.status === 200 || xhr.status === 0) {
 			var markdown = xhr.responseText;
@@ -31,32 +30,106 @@ function readAndConvertMarkdown(filepath) {
 			var html = marked(markdown);
 			console.log('Converted to HTML');
 			
-			// Create a new div element
-			var contentDiv = document.createElement('div');
-			contentDiv.innerHTML = html;
-			
-			// Insert it into the body
-			document.body.appendChild(contentDiv);
-			
-			console.log('Successfully added to document');
-			return contentDiv;
-			
+			return html;
 		} else {
 			console.error('Failed to load file: ' + xhr.status);
+			return null;
 		}
 	} catch (e) {
-		console.error('Error: ' + e.toString());
+		console.error('Error loading: ' + e.toString());
+		return null;
 	}
 }
 
-// Call the function when DOM is ready
+// Step 2: Manipulate the document
+function manipulateDocument(html) {
+	console.log('Step 2: Manipulating document');
+	
+	// Create a temporary container to work with the HTML
+	var tempDiv = document.createElement('div');
+	tempDiv.innerHTML = html;
+	
+	// Get all child elements
+	var elements = tempDiv.children;
+	var sections = [];
+	var currentSection = null;
+	
+	// Loop through all elements
+	for (var i = 0; i < elements.length; i++) {
+		var element = elements[i];
+		
+		if (element.tagName === 'H2') {
+			// Start a new section
+			currentSection = document.createElement('section');
+			currentSection.appendChild(element.cloneNode(true));
+			sections.push(currentSection);
+		} else if (currentSection) {
+			// Add element to current section
+			currentSection.appendChild(element.cloneNode(true));
+		} else {
+			// Content before first H2 - create initial section without H2
+			currentSection = document.createElement('section');
+			currentSection.appendChild(element.cloneNode(true));
+			sections.push(currentSection);
+			currentSection = null;
+		}
+	}
+	
+	// Build the new HTML with sections
+	var resultDiv = document.createElement('div');
+	for (var j = 0; j < sections.length; j++) {
+		resultDiv.appendChild(sections[j]);
+	}
+	
+	console.log('Created ' + sections.length + ' sections');
+	return resultDiv.innerHTML;
+}
+
+// Step 3: Insert the result into the document
+function insertIntoDocument(html) {
+	console.log('Step 3: Inserting into document');
+	
+	if (!html) {
+		console.error('No HTML to insert');
+		return null;
+	}
+	
+	// Create a new div element
+	var contentDiv = document.createElement('div');
+	contentDiv.innerHTML = html;
+	
+	// Insert it into the body
+	document.body.appendChild(contentDiv);
+	
+	console.log('Successfully added to document');
+	return contentDiv;
+}
+
+// Main function that orchestrates the three steps
+function processMarkdown(filepath) {
+	// Step 1: Load and convert
+	var html = loadAndConvertMarkdown(filepath);
+	
+	// Step 2: Manipulate
+	html = manipulateDocument(html);
+	
+	// Step 3: Insert into document
+	var result = insertIntoDocument(html);
+	
+	return result;
+}
+
+// Run when DOM is ready
 if (document.readyState === 'loading') {
 	document.addEventListener('DOMContentLoaded', function() {
-		readAndConvertMarkdown('README.md');
+		processMarkdown('README.md');
 	});
 } else {
-	readAndConvertMarkdown('README.md');
+	processMarkdown('README.md');
 }
+
+
+
 
 	</script>
 </body>

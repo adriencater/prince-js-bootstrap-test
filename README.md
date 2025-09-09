@@ -28,3 +28,7 @@ Pro tips:
 - Are there sections? <br>Consider transitions
 - Ask people to work against their better judgement
 - Ask your body
+
+## Bibliography
+
+Lorem ipsum.

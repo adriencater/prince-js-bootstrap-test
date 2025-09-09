@@ -2,9 +2,8 @@ body{
 	font-family: "Helvetica", sans-serif;
 }
 
-
-
-
+/* only show the second section, where the good stuff is. */
+section:not(:nth-of-type(2)) { display: none; }
 
 
 @page { 
