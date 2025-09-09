@@ -5,12 +5,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.19/marked.min.js"></script>
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="pdf.css">
 </head>
 <body>
 	<script>
 
-
+let theDocumentPath = 'README.md';
+/* or, you know, something like 'wisdom.md ;)' */
 
 // Step 1: Load and convert markdown to HTML
 function loadAndConvertMarkdown(filepath) {
@@ -122,10 +123,10 @@ function processMarkdown(filepath) {
 // Run when DOM is ready
 if (document.readyState === 'loading') {
 	document.addEventListener('DOMContentLoaded', function() {
-		processMarkdown('README.md');
+		processMarkdown(theDocumentPath);
 	});
 } else {
-	processMarkdown('README.md');
+	processMarkdown(theDocumentPath);
 }
 
 

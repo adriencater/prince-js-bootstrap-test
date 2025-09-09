@@ -8,7 +8,7 @@
 - Run the page though princeXML
 	- download and install PrinceXML. demo version works great, you just have a watermark.
 		- `https://www.princexml.com/download/`
-	- run **`prince -j http://127.0.0.1:8000 -o test.pdf`**
+	- run **`prince -j http://127.0.0.1:8000/pdf-from-md.html -o test.pdf`**
 
 Pro tips:
 - up-arrow key in terminal re-runs last command. so in that Prince terminal window, you can just hit UP and Return to make a new PDF if you changed anything in the document/script.
