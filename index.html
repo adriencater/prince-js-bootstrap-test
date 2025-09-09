@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.19/marked.min.js"></script>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<script>
+
+// Read markdown file and convert to HTML using marked 0.3.19
+function readAndConvertMarkdown(filepath) {
+	console.log('Starting to load: ' + filepath);
+	
+	var xhr = new XMLHttpRequest();
+	
+	try {
+		// Use synchronous request for PrinceXML
+		xhr.open('GET', filepath, false);
+		xhr.send(null);
+		
+		console.log('Status: ' + xhr.status);
+		
+		if (xhr.status === 200 || xhr.status === 0) {
+			var markdown = xhr.responseText;
+			console.log('Loaded ' + markdown.length + ' characters');
+			
+			// Convert markdown to HTML using marked
+			var html = marked(markdown);
+			console.log('Converted to HTML');
+			
+			// Create a new div element
+			var contentDiv = document.createElement('div');
+			contentDiv.innerHTML = html;
+			
+			// Insert it into the body
+			document.body.appendChild(contentDiv);
+			
+			console.log('Successfully added to document');
+			return contentDiv;
+			
+		} else {
+			console.error('Failed to load file: ' + xhr.status);
+		}
+	} catch (e) {
+		console.error('Error: ' + e.toString());
+	}
+}
+
+// Call the function when DOM is ready
+if (document.readyState === 'loading') {
+	document.addEventListener('DOMContentLoaded', function() {
+		readAndConvertMarkdown('README.md');
+	});
+} else {
+	readAndConvertMarkdown('README.md');
+}
+
+	</script>
+</body>
+</html>

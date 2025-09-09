@@ -1,0 +1,29 @@
+body{
+	font-family: "Helvetica", sans-serif;
+}
+
+
+
+
+
+
+@page { 
+	size: 160mm 235mm;
+	margin: 20mm;
+	margin-top:    12mm;
+	margin-bottom: 12mm;
+
+	margin-inside:  18mm;
+	margin-outside: 22mm;
+
+	/* Prince: Crop marks */
+	marks: crop;
+	prince-mark-offset: 3mm;
+	prince-mark-length: 5mm;
+	prince-mark-width: 0.25pt;
+
+	/* Prince: Bleed and trim area (cumulative!) */
+	/* https://www.princexml.com/doc/paged/#page-marks */
+	prince-bleed: 3mm;
+	prince-trim: 5mm;
+}
