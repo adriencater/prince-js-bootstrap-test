@@ -15,13 +15,16 @@ Pro tips:
 - if you leave the PDF file open in Preview.app, it will update every time you generate a PDF, if you're making adjustments and regenerating and faffing about. It's just like old-school web dev when you get to refresh the browser to see what you did!
 
 
-## Test Content
+## Test Content – Oblique Strategies
 
-- Sometimes, an email is just a way to say, “I love you.”
-- People think about you much less than you either hope or fear.
-- It’s often easier not to be terrible.
-- Whenever you’re not sure what to say, either say nothing, or ask a question.
-- Be sparing in how often you tell someone their negative feelings are wrong; it rarely helps a sad person to be told that they are also a liar.
-- Related: feelings are *real*. (Thanks, Mike S.)
-- Never organize anything you should discard.
-- Organizing your email is like alphabetizing your recycling.
+- A line has two sides
+- Abandon desire
+- Abandon normal instructions
+- Accept advice
+- Accretion
+- Adding on
+- Allow an easement (an easement is the abandon of a stricture)
+- Always first steps
+- Are there sections? <br>Consider transitions
+- Ask people to work against their better judgement
+- Ask your body
